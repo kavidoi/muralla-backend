@@ -70,3 +70,67 @@ model TaxDocumentItem {
 
   @@map("tax_document_items")
 }
+
+model POSConfiguration {
+  id                String   @id @default(cuid())
+  key               String   @unique
+  value             String
+  description       String?
+  isActive          Boolean  @default(true)
+  apiKey            String?
+  baseUrl           String?
+  autoSyncEnabled   Boolean  @default(false)
+  syncIntervalHours Int      @default(24)
+  maxDaysToSync     Int      @default(30)
+  retentionDays     Int      @default(90)
+  tenantId          String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("pos_configurations")
+}
+
+model POSTransaction {
+  id                  String   @id @default(cuid())
+  tuuSaleId          String?  @unique
+  externalId         String?  @unique
+  sequenceNumber     String?
+  serialNumber       String?
+  saleAmount         Decimal? @db.Decimal(12, 2)
+  totalAmount        Decimal  @db.Decimal(12, 2)
+  currency           String   @default("CLP")
+  status             String
+  transactionType    String?
+  method             String?
+  cardBrand          String?
+  locationId         String?
+  address            String?
+  transactionDateTime DateTime?
+  metadata           Json?
+  rawData            Json?
+  tenantId           String?
+  processedAt        DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@map("pos_transactions")
+}
+
+model POSSyncLog {
+  id             String    @id @default(cuid())
+  operation      String
+  syncType       String?
+  status         String
+  message        String?
+  data           Json?
+  duration       Int?
+  errorDetails   String?
+  errors         String?
+  startedAt      DateTime?
+  startDate      DateTime?
+  completedAt    DateTime?
+  totalProcessed Int?
+  createdAt      DateTime  @default(now())
+
+  @@map("pos_sync_logs")
+}
