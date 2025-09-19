@@ -13,7 +13,11 @@
     "@nestjs/common": "^11.1.6",
     "@nestjs/core": "^11.1.6",
     "@nestjs/platform-express": "^11.1.6",
+    "@nestjs/config": "^3.1.1",
+    "@nestjs/passport": "^10.0.3",
+    "@nestjs/schedule": "^4.0.0",
     "@prisma/client": "^6.15.0",
+    "prisma": "^6.15.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
     "helmet": "^8.0.0",
@@ -22,7 +26,8 @@
     "class-validator": "^0.14.0",
     "class-transformer": "^0.5.1",
     "axios": "^1.6.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "mercadopago": "^2.0.0"
   },
   "devDependencies": {
     "tsx": "^4.0.0",
