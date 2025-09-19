@@ -2,14 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const core_1 = require("@nestjs/core");
-const app_module_full_1 = require("./app.module.full");
+const app_module_1 = require("./app.module");
 const helmet_1 = require("helmet");
 const common_1 = require("@nestjs/common");
 const path_1 = require("path");
 const fs_1 = require("fs");
 const express = require("express");
 async function bootstrap() {
-    const createAppPromise = core_1.NestFactory.create(app_module_full_1.AppModule);
+    const createAppPromise = core_1.NestFactory.create(app_module_1.AppModule);
     const appTimeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Application startup timeout')), 30000));
     let app;
     try {
