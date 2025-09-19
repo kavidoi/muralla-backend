@@ -20,12 +20,23 @@ let InvoicingController = class InvoicingController {
     constructor(invoicingService) {
         this.invoicingService = invoicingService;
     }
-    async getTaxDocuments(page, limit) {
+    async getDocuments(page = '1', limit = '20') {
+        return {
+            documents: [],
+            pagination: {
+                page: parseInt(page, 10),
+                limit: parseInt(limit, 10),
+                total: 0,
+                totalPages: 0,
+            },
+        };
+    }
+    async getTaxDocuments(page = '1', limit = '20') {
         console.log('Controller method called, service is:', this.invoicingService);
         if (!this.invoicingService) {
             throw new Error('InvoicingService is not injected properly');
         }
-        return this.invoicingService.getTaxDocuments(page, limit);
+        return this.invoicingService.getTaxDocuments(parseInt(page, 10), parseInt(limit, 10));
     }
     async getTaxDocumentStats() {
         return this.invoicingService.getTaxDocumentStats();
@@ -36,11 +47,19 @@ let InvoicingController = class InvoicingController {
 };
 exports.InvoicingController = InvoicingController;
 __decorate([
-    (0, common_1.Get)('tax-documents'),
-    __param(0, (0, common_1.Query)('page', new common_1.DefaultValuePipe(1), common_1.ParseIntPipe)),
-    __param(1, (0, common_1.Query)('limit', new common_1.DefaultValuePipe(20), common_1.ParseIntPipe)),
+    (0, common_1.Get)('documents'),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], InvoicingController.prototype, "getDocuments", null);
+__decorate([
+    (0, common_1.Get)('tax-documents'),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], InvoicingController.prototype, "getTaxDocuments", null);
 __decorate([

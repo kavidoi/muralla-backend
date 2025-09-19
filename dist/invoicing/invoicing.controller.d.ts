@@ -2,7 +2,16 @@ import { InvoicingService } from './invoicing.service';
 export declare class InvoicingController {
     private readonly invoicingService;
     constructor(invoicingService: InvoicingService);
-    getTaxDocuments(page: number, limit: number): Promise<{
+    getDocuments(page?: string, limit?: string): Promise<{
+        documents: any[];
+        pagination: {
+            page: number;
+            limit: number;
+            total: number;
+            totalPages: number;
+        };
+    }>;
+    getTaxDocuments(page?: string, limit?: string): Promise<{
         documents: ({
             items: {
                 id: string;
