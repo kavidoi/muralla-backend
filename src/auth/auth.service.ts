@@ -6,10 +6,26 @@ export class AuthService {
   constructor(private jwtService: JwtService) {}
 
   async login(loginDto: { email: string; password: string }) {
-    // For development, accept specific test credentials
+    // Use environment variables for authentication
     const validUsers = [
-      { email: 'admin@murallacafe.cl', password: 'admin123', name: 'Admin', role: 'admin' },
-      { email: 'contacto@murallacafe.cl', password: 'admin123', name: 'Admin', role: 'admin' }
+      { 
+        email: process.env.ADMIN_EMAIL || 'contacto@murallacafe.cl',
+        password: process.env.ADMIN_PASSWORD || 'admin123',
+        name: process.env.ADMIN_USER || 'Admin',
+        role: 'admin'
+      },
+      {
+        email: process.env.SECONDARY_ADMIN_EMAIL || 'kavi@murallacafe.cl',
+        password: process.env.SECONDARY_ADMIN_PASSWORD || 'admin123',
+        name: process.env.SECONDARY_ADMIN_USER || 'Kaví Doi',
+        role: 'admin'
+      },
+      {
+        email: process.env.TERTIARY_ADMIN_EMAIL || 'darwin@murallacafe.cl',
+        password: process.env.TERTIARY_ADMIN_PASSWORD || 'admin123',
+        name: process.env.TERTIARY_ADMIN_USER || 'Darwin Bruna',
+        role: 'admin'
+      }
     ];
 
     const user = validUsers.find(u => 
@@ -39,9 +55,34 @@ export class AuthService {
   }
 
   async validateUser(email: string, password: string): Promise<any> {
-    // This would normally check against database
-    if (email === 'admin@murallacafe.cl' && password === 'admin123') {
-      return { id: '1', email, name: 'Admin', role: 'admin' };
+    // Check against environment variables
+    const validUsers = [
+      { 
+        email: process.env.ADMIN_EMAIL || 'contacto@murallacafe.cl',
+        password: process.env.ADMIN_PASSWORD || 'admin123',
+        name: process.env.ADMIN_USER || 'Admin',
+        role: 'admin'
+      },
+      {
+        email: process.env.SECONDARY_ADMIN_EMAIL || 'kavi@murallacafe.cl',
+        password: process.env.SECONDARY_ADMIN_PASSWORD || 'admin123',
+        name: process.env.SECONDARY_ADMIN_USER || 'Kaví Doi',
+        role: 'admin'
+      },
+      {
+        email: process.env.TERTIARY_ADMIN_EMAIL || 'darwin@murallacafe.cl',
+        password: process.env.TERTIARY_ADMIN_PASSWORD || 'admin123',
+        name: process.env.TERTIARY_ADMIN_USER || 'Darwin Bruna',
+        role: 'admin'
+      }
+    ];
+
+    const user = validUsers.find(u => 
+      u.email === email && u.password === password
+    );
+
+    if (user) {
+      return { id: '1', email: user.email, name: user.name, role: user.role };
     }
     return null;
   }
