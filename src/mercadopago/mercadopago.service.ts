@@ -78,11 +78,6 @@ export class MercadoPagoService implements OnModuleInit {
   constructor(private configService: ConfigService) {}
 
   async onModuleInit() {
-    if (!this.configService) {
-      this.logger.error('ConfigService not available in MercadoPagoService');
-      return;
-    }
-
     // Try both naming conventions
     this.accessToken = this.configService.get<string>('MP_ACCESS_TOKEN') ||
                       this.configService.get<string>('MERCADOPAGO_ACCESS_TOKEN');

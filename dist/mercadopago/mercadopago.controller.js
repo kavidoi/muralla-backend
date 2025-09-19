@@ -11,13 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MercadoPagoController = void 0;
 const common_1 = require("@nestjs/common");
 const mercadopago_service_1 = require("./mercadopago.service");
 const passport_1 = require("@nestjs/passport");
-const create_payment_dto_1 = require("./dto/create-payment.dto");
 const public_decorator_1 = require("../auth/public.decorator");
 let MercadoPagoController = class MercadoPagoController {
     mercadoPagoService;
@@ -276,7 +274,7 @@ __decorate([
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_a = typeof create_payment_dto_1.CreatePaymentDto !== "undefined" && create_payment_dto_1.CreatePaymentDto) === "function" ? _a : Object]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], MercadoPagoController.prototype, "createPreference", null);
 __decorate([

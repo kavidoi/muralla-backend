@@ -1,6 +1,6 @@
 import { OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-interface MercadoPagoTransaction {
+export interface MercadoPagoTransaction {
     id: number;
     date_created: string;
     date_approved?: string;

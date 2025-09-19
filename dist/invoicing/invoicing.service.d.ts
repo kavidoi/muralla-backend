@@ -15,7 +15,11 @@ export declare class InvoicingService {
                 category: string | null;
             }[];
         } & {
+            tenantId: string | null;
+            createdAt: Date;
+            updatedAt: Date;
             id: string;
+            status: import(".prisma/client").$Enums.TaxDocumentStatus;
             type: import(".prisma/client").$Enums.TaxDocumentType;
             folio: string | null;
             documentCode: number | null;
@@ -29,17 +33,13 @@ export declare class InvoicingService {
             totalAmount: import("@prisma/client/runtime/library").Decimal | null;
             currency: string | null;
             issuedAt: Date | null;
-            status: import(".prisma/client").$Enums.TaxDocumentStatus;
             pdfUrl: string | null;
             xmlUrl: string | null;
             rawResponse: import("@prisma/client/runtime/library").JsonValue | null;
             notes: string | null;
             posTransactionId: string | null;
             costId: string | null;
-            tenantId: string | null;
             createdBy: string | null;
-            createdAt: Date;
-            updatedAt: Date;
         })[];
         pagination: {
             page: number;
@@ -60,7 +60,11 @@ export declare class InvoicingService {
             category: string | null;
         }[];
     } & {
+        tenantId: string | null;
+        createdAt: Date;
+        updatedAt: Date;
         id: string;
+        status: import(".prisma/client").$Enums.TaxDocumentStatus;
         type: import(".prisma/client").$Enums.TaxDocumentType;
         folio: string | null;
         documentCode: number | null;
@@ -74,17 +78,13 @@ export declare class InvoicingService {
         totalAmount: import("@prisma/client/runtime/library").Decimal | null;
         currency: string | null;
         issuedAt: Date | null;
-        status: import(".prisma/client").$Enums.TaxDocumentStatus;
         pdfUrl: string | null;
         xmlUrl: string | null;
         rawResponse: import("@prisma/client/runtime/library").JsonValue | null;
         notes: string | null;
         posTransactionId: string | null;
         costId: string | null;
-        tenantId: string | null;
         createdBy: string | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     getTaxDocumentStats(): Promise<{
         total: number;

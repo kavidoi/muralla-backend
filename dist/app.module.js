@@ -13,6 +13,8 @@ const prisma_service_1 = require("./prisma/prisma.service");
 const test_controller_1 = require("./test.controller");
 const invoicing_controller_1 = require("./invoicing/invoicing.controller");
 const invoicing_service_1 = require("./invoicing/invoicing.service");
+const invoicing_module_1 = require("./invoicing/invoicing.module");
+const mercadopago_module_1 = require("./mercadopago/mercadopago.module");
 const auth_module_1 = require("./auth/auth.module");
 const health_controller_1 = require("./health/health.controller");
 const api_stub_module_1 = require("./api-stub/api-stub.module");
@@ -25,11 +27,20 @@ exports.AppModule = AppModule = __decorate([
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
             }),
+            invoicing_module_1.InvoicingModule,
+            mercadopago_module_1.MercadoPagoModule,
             auth_module_1.AuthModule,
             api_stub_module_1.ApiStubModule,
         ],
-        controllers: [test_controller_1.TestController, invoicing_controller_1.InvoicingController, health_controller_1.HealthController],
-        providers: [prisma_service_1.PrismaService, invoicing_service_1.InvoicingService],
+        controllers: [
+            test_controller_1.TestController,
+            invoicing_controller_1.InvoicingController,
+            health_controller_1.HealthController,
+        ],
+        providers: [
+            prisma_service_1.PrismaService,
+            invoicing_service_1.InvoicingService,
+        ],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
