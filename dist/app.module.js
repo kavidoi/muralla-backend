@@ -15,6 +15,7 @@ const invoicing_controller_1 = require("./invoicing/invoicing.controller");
 const invoicing_service_1 = require("./invoicing/invoicing.service");
 const auth_module_1 = require("./auth/auth.module");
 const health_controller_1 = require("./health/health.controller");
+const api_stub_module_1 = require("./api-stub/api-stub.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -25,6 +26,7 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             auth_module_1.AuthModule,
+            api_stub_module_1.ApiStubModule,
         ],
         controllers: [test_controller_1.TestController, invoicing_controller_1.InvoicingController, health_controller_1.HealthController],
         providers: [prisma_service_1.PrismaService, invoicing_service_1.InvoicingService],

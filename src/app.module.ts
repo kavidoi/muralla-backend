@@ -6,6 +6,7 @@ import { InvoicingController } from './invoicing/invoicing.controller';
 import { InvoicingService } from './invoicing/invoicing.service';
 import { AuthModule } from './auth/auth.module';
 import { HealthController } from './health/health.controller';
+import { ApiStubModule } from './api-stub/api-stub.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { HealthController } from './health/health.controller';
       isGlobal: true,
     }),
     AuthModule,
+    ApiStubModule,
   ],
   controllers: [TestController, InvoicingController, HealthController],
   providers: [PrismaService, InvoicingService],
