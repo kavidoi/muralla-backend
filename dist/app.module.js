@@ -24,6 +24,7 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
+                envFilePath: [],
             }),
             auth_module_1.AuthModule,
             users_module_1.UsersModule,

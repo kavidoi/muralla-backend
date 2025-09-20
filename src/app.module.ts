@@ -12,6 +12,8 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      // Don't load from .env files - prioritize Render environment variables
+      envFilePath: [],
     }),
     AuthModule,
     UsersModule,
