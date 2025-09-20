@@ -79,11 +79,11 @@ export class MercadoPagoService implements OnModuleInit {
 
   async onModuleInit() {
     // Try both naming conventions
-    this.accessToken = this.configService.get<string>('MP_ACCESS_TOKEN') ||
-                      this.configService.get<string>('MERCADOPAGO_ACCESS_TOKEN');
+    this.accessToken = this.configService?.get<string>('MP_ACCESS_TOKEN') ||
+                      this.configService?.get<string>('MERCADOPAGO_ACCESS_TOKEN') || '';
 
-    this.publicKey = this.configService.get<string>('MP_PUBLIC_KEY') ||
-                    this.configService.get<string>('MERCADOPAGO_PUBLIC_KEY');
+    this.publicKey = this.configService?.get<string>('MP_PUBLIC_KEY') ||
+                    this.configService?.get<string>('MERCADOPAGO_PUBLIC_KEY') || '';
 
     if (!this.accessToken) {
       this.logger.warn('MercadoPago access token not configured (tried MP_ACCESS_TOKEN and MERCADOPAGO_ACCESS_TOKEN)');
