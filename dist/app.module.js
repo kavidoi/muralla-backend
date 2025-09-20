@@ -9,15 +9,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
-const prisma_service_1 = require("./prisma/prisma.service");
-const test_controller_1 = require("./test.controller");
-const invoicing_controller_1 = require("./invoicing/invoicing.controller");
-const invoicing_service_1 = require("./invoicing/invoicing.service");
-const invoicing_module_1 = require("./invoicing/invoicing.module");
-const mercadopago_module_1 = require("./mercadopago/mercadopago.module");
 const auth_module_1 = require("./auth/auth.module");
-const health_controller_1 = require("./health/health.controller");
+const users_module_1 = require("./users/users.module");
+const mercadopago_module_1 = require("./mercadopago/mercadopago.module");
+const invoicing_module_1 = require("./invoicing/invoicing.module");
 const api_stub_module_1 = require("./api-stub/api-stub.module");
+const core_1 = require("@nestjs/core");
+const jwt_auth_guard_1 = require("./auth/jwt-auth.guard");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -27,19 +25,17 @@ exports.AppModule = AppModule = __decorate([
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
             }),
-            invoicing_module_1.InvoicingModule,
-            mercadopago_module_1.MercadoPagoModule,
             auth_module_1.AuthModule,
+            users_module_1.UsersModule,
+            mercadopago_module_1.MercadoPagoModule,
+            invoicing_module_1.InvoicingModule,
             api_stub_module_1.ApiStubModule,
         ],
-        controllers: [
-            test_controller_1.TestController,
-            invoicing_controller_1.InvoicingController,
-            health_controller_1.HealthController,
-        ],
         providers: [
-            prisma_service_1.PrismaService,
-            invoicing_service_1.InvoicingService,
+            {
+                provide: core_1.APP_GUARD,
+                useClass: jwt_auth_guard_1.JwtAuthGuard,
+            },
         ],
     })
 ], AppModule);
