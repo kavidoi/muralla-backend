@@ -9,6 +9,9 @@ export class AuthController {
   @Public()
   @Post('login')
   async login(@Body() loginDto: { email: string; password: string }) {
+    console.log('🔐 AuthController.login called');
+    console.log('🔐 authService exists:', !!this.authService);
+    console.log('🔐 loginDto:', loginDto);
     return this.authService.login(loginDto);
   }
 
